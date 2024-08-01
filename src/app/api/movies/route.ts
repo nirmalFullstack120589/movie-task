@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     await connect();
 
     const movies = await Movie.find({})
+      .sort({ _id: -1 })
       .skip((page - 1) * limit)
       .limit(limit);
 
@@ -56,7 +57,7 @@ export async function POST(request: NextRequest) {
     });
 
     const response = NextResponse.json({
-      message: 'create movie successful',
+      message: 'Movie has been created successfully',
       success: true,
       data: newMovie,
     });

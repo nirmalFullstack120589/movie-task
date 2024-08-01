@@ -7,12 +7,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="bg-background text-white">
-        <div className="relative min-h-screen h-auto footer-background">
-          <main className="mx-auto lg:px-120 px-24 max-w-1440 h-full z-1">
-            {children}
-          </main>
-        </div>
-        <Toaster />
+        <main className="mx-auto lg:px-120 px-24 max-w-1440 z-1 min-h-screen h-auto footer-background">
+          {children}
+        </main>
+        <Toaster
+          toastOptions={{
+            style: {
+              whiteSpace: 'nowrap',
+              maxWidth: 'none',
+            },
+          }}
+        />
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { AddEditMovieProps, IAddEditMovie, IAddEditMovieErrors } from '@/types';
 import { cn, uploadFileToS3 } from '@/lib/utils';
-import { errorToast } from '@/lib/helper';
+import { errorToast, successToast } from '@/lib/helper';
 import Loader from '../common/Loader';
 
 const AddEditMovie = ({ movieId }: AddEditMovieProps) => {
@@ -238,6 +238,9 @@ const AddEditMovie = ({ movieId }: AddEditMovieProps) => {
         errorToast(errorData?.error);
       }
 
+      const data = await response.json();
+
+      successToast(data?.message);
       router.push('/');
     } catch (error: any) {
       errorToast(error.message);

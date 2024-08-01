@@ -36,7 +36,12 @@ export const PUT = async (request: NextRequest, { params }: Params) => {
       return NextResponse.json({ error: 'Movie not found' }, { status: 404 });
     }
 
-    return NextResponse.json(updatedPost);
+    const response = NextResponse.json({
+      message: 'Movie has been updated successfully',
+      success: true,
+    });
+
+    return response;
   } catch (err) {
     throw new Error('Failed to update post!');
   }
