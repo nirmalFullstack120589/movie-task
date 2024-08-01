@@ -3,15 +3,22 @@ import React from 'react';
 import Button from '@/components/common/Button';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { clearCookie } from '@/lib/action';
 
 const EmptyMoviesList = () => {
   const router = useRouter();
+
+  const handleLogout = async () => {
+    await clearCookie();
+    router.push('/login');
+  };
+
   return (
     <div className="w-full md:py-120 py-80 h-screen">
       <div className="flex justify-end items-center">
         <div
           className="flex items-center gap-[16px] cursor-pointer"
-          // onClick={() => handleLogout()}
+          onClick={() => handleLogout()}
         >
           <p className="text-body-regular font-bold hidden md:block">Logout</p>
           <Image
